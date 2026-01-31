@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  :root {
+    --color-saas-black: #0B0F14;
+    --color-saas-dark: #111827;
+    --color-saas-accent: #22C55E;
+    --color-saas-text: #E5E7EB;
+    --color-saas-text-muted: #9CA3AF;
+  }
+  
+  body {
+    background-color: #0B0F14;
+    color: #E5E7EB;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* Button Styles */
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    background-color: #22C55E;
+    color: #0B0F14;
+  }
+  
+  .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+  }
+  
+  .btn-primary:active {
+    @apply transform scale-95;
+  }
+  
+  .btn-primary:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    background-color: #111827;
+    color: #E5E7EB;
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgba(17, 24, 39, 0.8);
+  }
+  
+  .btn-secondary:active {
+    @apply transform scale-95;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 border-2 rounded-lg font-medium transition-all duration-200;
+    border-color: #22C55E;
+    color: #22C55E;
+  }
+  
+  .btn-outline:hover {
+    background-color: rgba(34, 197, 94, 0.1);
+  }
+  
+  .btn-outline:active {
+    @apply transform scale-95;
+  }
+
+  /* Input Styles */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg transition-all duration-200;
+    background-color: #111827;
+    border: 1px solid #111827;
+    color: #E5E7EB;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    ring: 2px;
+    ring-color: #22C55E;
+    border-color: transparent;
+  }
+
+  .input-field::placeholder {
+    color: #9CA3AF;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply rounded-xl p-6 transition-all duration-300 border;
+    background-color: #111827;
+    border-color: #111827;
+  }
+
+  .card-hover:hover {
+    border-color: #22C55E;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-pending {
+    background-color: rgba(234, 179, 8, 0.2);
+    color: #FCD34D;
+  }
+
+  .badge-approved {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: #22C55E;
+  }
+
+  .badge-rejected {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #FCA5A5;
+  }
+
+  /* Skeleton Loader */
+  .skeleton {
+    @apply rounded-lg;
+    background-color: #111827;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-6xl mx-auto px-4 md:px-6;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    color: #22C55E;
+  }
+  .bg-gradient-primary {
+    background: linear-gradient(to right, rgba(34,197,94,0.08), rgba(34,197,94,0.04));
+  }
+
+  .blur-backdrop {
+    @apply backdrop-blur-md;
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-morphism {
+    background-color: rgba(17, 24, 39, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #0ea5e9;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+/* Pulse slow animation for background elements */
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
