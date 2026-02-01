@@ -9,10 +9,26 @@ const claimRoutes = require('./routes/claimRoutes');
 dotenv.config();
 const app = express();
 connectDB();
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://startup-benefits-lemon.vercel.app",
+  "https://startup-benefits-jxn976k5p-priyanshu-keshris-projects.vercel.app"
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true,
+  origin: function (origin, callback) {
+    // allow mobile apps / postman / server-to-server
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Log all requests with timestamp
